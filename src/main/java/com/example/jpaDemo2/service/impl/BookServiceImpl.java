@@ -4,6 +4,8 @@ import com.example.jpaDemo2.model.Book;
 import com.example.jpaDemo2.repository.BookRepository;
 import com.example.jpaDemo2.service.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +23,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> findBooks() {
         return bookRepository.findAll();
+    }
+
+    @Override
+    public Page<Book> findBooks(Pageable pageable) {
+        return bookRepository.findAll(pageable);
     }
 
     @Override

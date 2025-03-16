@@ -3,6 +3,8 @@ package com.example.jpaDemo2.controller;
 import com.example.jpaDemo2.model.Book;
 import com.example.jpaDemo2.service.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +25,11 @@ public class BookController {
     @GetMapping
     public List<Book> findBooks() {
         return bookService.findBooks();
+    }
+
+    @GetMapping("/paginated")
+    public Page<Book> findBooks(Pageable pageable) {
+        return bookService.findBooks(pageable);
     }
 
     @GetMapping("/{id}")
